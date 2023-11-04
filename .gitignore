@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+
+# Arquivos de ambiente
+.env
+
+# Logs
+*.log
+
+# Arquivos de compilação e cache
+/dist/
+/build/
+/.cache/
+webpack-stats.json
+
+# Pastas de configuração de IDE
+.vscode/
+.idea/
+
+# Arquivos específicos do VS Code
+.settings.json
+.code-workspace
+
+# Outros arquivos gerados automaticamente
+.DS_Store
+Thumbs.db
