@@ -3,7 +3,14 @@ import { healthController } from "../controller/HealthController";
 
 const router: Router = Router();
 
-//rotas
+router.get("/chats", (req, res) => {
+  res.send("chats: ");
+});
+
+router.get("/create-chat", (req, res) => {
+  res.send("create-chat");
+});
+
 router.get("/health", healthController.health);
 
 export { router };
