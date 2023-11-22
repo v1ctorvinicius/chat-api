@@ -8,8 +8,11 @@ router.get("/chats", (req, res) => {
 });
 
 router.get("/create-chat", (req, res) => {
+  console.log(req.params);
   res.send("create-chat");
 });
+
+// router.get("/chat",);
 
 router.get("/health", healthController.health);
 
