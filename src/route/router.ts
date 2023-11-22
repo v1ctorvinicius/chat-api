@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { healthController } from "../controller/HealthController";
+import chatService from "../service/ChatService";
 
 const router: Router = Router();
 
@@ -8,12 +9,13 @@ router.get("/chats", (req, res) => {
 });
 
 router.get("/create-chat", (req, res) => {
-  console.log(req.params);
-  res.send("create-chat");
+  chatService.createChat();
+  res.send("chat created");
 });
 
 // router.get("/chat",);
 
 router.get("/health", healthController.health);
+
 
 export { router };
