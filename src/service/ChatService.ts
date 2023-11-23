@@ -10,8 +10,10 @@ class ChatService {
   }
 
   public createChat(name: string) {
+    if(name === "" || name === undefined) name = "Chat " + this.chatCount();
     let newChat = new ChatRoom(name);
     this.chats.push(newChat);
+    return newChat;
   }
 
   public chatCount() {

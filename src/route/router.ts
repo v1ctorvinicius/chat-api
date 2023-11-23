@@ -12,10 +12,14 @@ router
     res.send(service.getChats());
   })
   .post((req, res) => {
-    service.createChat(req.body.name);
+    const newChat = service.createChat(req.body.name);
     res.status(201);
-    res.send("chat " + req.body.name + " created.");
+    res.send(newChat);
   });
+
+router.get("/chats/count", (req, res) => {
+  res.send({ count: service.chatCount() });
+});
 
 router.get("/health", healthController.health);
 
