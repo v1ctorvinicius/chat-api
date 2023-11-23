@@ -1,21 +1,22 @@
 import { Router } from "express";
 import { healthController } from "../controller/HealthController";
-import chatService from "../service/ChatService";
+import ChatService from "../service/ChatService";
 
 const router: Router = Router();
+const service = new ChatService();
 
-router.get("/chats", (req, res) => {
-  res.send("chats: ");
-});
-
-router.get("/create-chat", (req, res) => {
-  chatService.createChat();
-  res.send("chat created");
-});
-
-// router.get("/chat",);
+router
+  .route("/chats")
+  .get((req, res) => {
+    res.status(200);
+    res.send(service.getChats());
+  })
+  .post((req, res) => {
+    service.createChat(req.body.name);
+    res.status(201);
+    res.send("chat " + req.body.name + " created.");
+  });
 
 router.get("/health", healthController.health);
-
 
 export { router };
