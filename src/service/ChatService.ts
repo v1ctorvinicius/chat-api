@@ -6,7 +6,7 @@ class ChatService {
   public getChat() {}
 
   public getChats() {
-    return this.chats.map((chat) => chat.name);
+    return this.chats;
   }
 
   public createChat(name: string) {
