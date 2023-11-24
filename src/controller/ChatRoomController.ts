@@ -3,18 +3,16 @@ import { chatService } from "../service/ChatService";
 
 class ChatRoomController {
   public getChats(req: Request, res: Response) {
-    res.status(200);
-    return res.json(chatService.getChats());
+    return res.json(chatService.getChats()).status(200);
   }
 
   public create(req: Request, res: Response) {
     const newChat = chatService.createChat(req.body.name);
-    res.status(201);
-    return res.json(newChat);
+    return res.json(newChat).status(201);
   }
 
   public count(req: Request, res: Response) {
-    return res.json(chatService.chatCount());
+    return res.json(chatService.chatCount()).status(200);
   }
 }
 
