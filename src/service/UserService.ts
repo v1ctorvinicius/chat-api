@@ -1,5 +1,6 @@
 import User from "../model/User";
 
+
 export default class UserService {
   private static instance: UserService;
   private _users: User[];
@@ -18,7 +19,7 @@ export default class UserService {
   public createUser(name: string) {
     let newUser = new User(name);
     console.log("newUser: ", newUser);
-    
+
     this._users.push(newUser);
   }
 
@@ -29,8 +30,6 @@ export default class UserService {
   public getUsers(): User[] {
     return UserService.getInstance()._users;
   }
-
-  
 }
 
 export const userService = UserService.getInstance();

@@ -16,9 +16,9 @@ class ChatRoomController {
   }
 
   public connect(req: Request, res: Response) {
-    return res
-      .json(chatService.connect(req.body.chatId, req.body.user))
-      .status(200);
+    let chatId = parseInt(req.body.chatId);
+    let userId = parseInt(req.body.userId);
+    return res.json(chatService.connect(chatId, userId)).status(200);
   }
 
   public post(req: Request, res: Response) {
