@@ -23,21 +23,13 @@ class ChatService {
 
   public connect(chatId: number, user: User) {
     let chat = this.chats.find((chat) => {
-      console.log("chatId: ", chatId);
-      console.log("chat: ", chat);
-      console.log("chat.id: ", chat.id);
-
-      let chatIdFromReq = chatId.toString();
-      let chatIdFromObj = chat.id.toString();
-
-      if (chatIdFromReq.toString() === chatIdFromObj.toString()) {
+      if (chatId === chat.id) {
         console.log("Equal: chat.id, chatId");
         return chat; // Return the chat room when found
       }
-      return false; // Continue searching
+      return; // Continue searching
     });
 
-    
     if (chat) {
       // Chat room found, add the user
       chat.users.push(user);
@@ -45,7 +37,6 @@ class ChatService {
     } else {
       console.log("Chat room not found for chatId: ", chatId);
     }
-    
   }
 }
 
