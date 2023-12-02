@@ -14,6 +14,10 @@ class ChatRoomController {
   public count(req: Request, res: Response) {
     return res.json(chatService.chatCount()).status(200);
   }
+
+  public connect(req: Request, res: Response) {
+    return res.json(chatService.connect(req.body.chatId, req.body.user)).status(200);
+  }
 }
 
 export const chatRoomController = new ChatRoomController();

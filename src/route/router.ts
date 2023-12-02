@@ -7,7 +7,10 @@ const router: Router = Router();
 
 router.get("/chats", chatRoomController.getChats);
 router.get("/chats/count", chatRoomController.count);
+router.post("/chats/connect", chatRoomController.connect); 
 router.post("/chats", chatRoomController.create);
+
+
 // router.get("/dices/:expression", diceController.rollDices);
 router.get("/dices/2d6", diceController.roll2d6);
 
