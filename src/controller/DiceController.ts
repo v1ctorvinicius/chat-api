@@ -2,17 +2,9 @@ import { Request, Response } from "express";
 import DiceService from "../service/dice/DiceService";
 
 class DiceController {
-  private evaluate(expression: string): boolean {
-    const regex = /^\d+d\d+$/;
-    return regex.test(expression);
-  }
-
   public async rollDices(req: Request, res: Response) {
-    const { expression } = req.body;
+    const { expression } = req.params;
     console.log("expression: ", expression);
-    
-    if (!this.evaluate(expression))
-      return res.status(400).json({ error: "Invalid expression" });
 
     res.json(DiceService.rollDices(expression));
   }
@@ -21,6 +13,11 @@ class DiceController {
 
   public roll2d6(req: Request, res: Response) {
     return res.json(DiceService.roll2d6());
+  }
+
+  private evaluate(expression: string): boolean {
+    const regex = /^\d+d\d+$/;
+    return regex.test(expression);
   }
 }
 
