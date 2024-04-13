@@ -8,6 +8,7 @@ const router: Router = Router();
 router.use("/api", router);
 
 router.get("/chats", chatController.getChats);
+router.get("/chats/:chatId", chatController.getChatById);
 router.post("/chats", chatController.create);
 router.get("/chats/count", chatController.count);
 router.post("/chats/connect", chatController.connect); //TODO: put chatId in param, erase from body
