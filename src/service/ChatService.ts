@@ -7,14 +7,11 @@ class ChatService {
   private _chats: ChatRoom[] = [];
 
   public getChatById(id: number): ChatRoom | undefined {
-    let chat = this._chats.find((chat) => {
+    return this._chats.find((chat) => {
       if (id === chat.id) {
-        console.log("Equal: chat.id, chatId");
         return chat; // Return the chat room when found
       }
-      return; // Continue searching
     });
-    return chat;
   }
 
   public getChats() {
@@ -48,6 +45,10 @@ class ChatService {
 
     // Chat room found, add the user
     chat.users.push(user);
+  }
+
+  public getMessages(chatId: number) {
+    let messages = this.getChatById(chatId)?.messages;
   }
 
   public newMessage(chatId: number, userId: number, message: string) {
