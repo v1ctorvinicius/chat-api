@@ -1,4 +1,4 @@
-import ChatRoom from "../model/ChatRoom";
+import ChatRoom from "../model/Chat";
 import Message from "../model/Message";
 import User from "../model/User";
 import { userService } from "./UserService";
@@ -67,10 +67,10 @@ class ChatService {
     // Chat room found, add the message
     let newMessage = new Message(message, userId);
     console.log("newMessage: ", newMessage);
-    
+
     chat.messages.push(newMessage);
     console.log("chat.messages: ", chat.messages);
-    
+
     console.log("Final chat: ", chat);
   }
 }

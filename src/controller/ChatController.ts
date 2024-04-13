@@ -2,8 +2,17 @@ import { Request, Response } from "express";
 import { chatService } from "../service/ChatService";
 
 class ChatRoomController {
+  public getMessages(req: Request, res: Response) {
+    let chatId = parseInt(req.params.chatId);
+    return res.json(chatService.getMessages(chatId)).status(200);
+  }
   public getChats(req: Request, res: Response) {
     return res.json(chatService.getChats()).status(200);
+  }
+
+  public getChatById(req: Request, res: Response) {
+    let chatId = parseInt(req.params.chatId);
+    return res.json(chatService.getChatById(chatId)).status(200);
   }
 
   public create(req: Request, res: Response) {
@@ -30,4 +39,4 @@ class ChatRoomController {
   }
 }
 
-export const chatRoomController = new ChatRoomController();
+export const chatController = new ChatRoomController();

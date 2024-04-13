@@ -1,7 +1,7 @@
 import { userService } from "../service/UserService";
 import { Request, Response } from "express";
 
-export default class UserController {
+class UserController {
   private static instance: UserController;
 
   private constructor() {}
@@ -26,3 +26,5 @@ export default class UserController {
     return userService.getUserById(id);
   }
 }
+
+export const userController = UserController.getInstance();
