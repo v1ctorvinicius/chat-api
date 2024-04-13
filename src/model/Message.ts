@@ -3,13 +3,14 @@ export default class Message {
   private _id: number;
   private _userId : number;
   private _text: string;
-  private _timestamp: Date;
+  private _timestamp: string;
 
-  constructor(text: string, userId: number) {
+  constructor(text: string, userId: number, timestamp: string) {
+    this._id = Math.floor(Math.random() * 1000);
     this._text = text;
     this._userId = userId;
-    this._id = Math.floor(Math.random() * 1000);
-    this._timestamp = new Date();
+    // this._timestamp = new Date().toLocaleString('pt-br');
+    this._timestamp = timestamp;
   }
 
   get text(): string {

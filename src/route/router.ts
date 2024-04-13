@@ -9,11 +9,11 @@ router.use("/api", router);
 
 router.get("/chats", chatController.getChats);
 router.get("/chats/:chatId", chatController.getChatById);
-router.post("/chats", chatController.create);
 router.get("/chats/count", chatController.count);
-router.post("/chats/connect", chatController.connect); //TODO: put chatId in param, erase from body
 router.get("/chats/:chatId/get-messages", chatController.getMessages);
-// router.post("/chats/send-message/:chatId/:userId", chatRoomController.post);
+router.post("/chats", chatController.create);
+router.post("/chats/connect", chatController.connect); //TODO: put chatId in param, erase from body
+router.post("/chats/send-message/:chatId", chatController.post);
 
 router.get("/users", userController.getUsers);
 router.post("/users", userController.createUser);
