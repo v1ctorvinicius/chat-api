@@ -1,20 +1,24 @@
-import User from "./User";
 import Message from "./Message";
+import User from "./User";
 
 export default class ChatRoom {
   public id: number;
   public name: string;
   public users: User[];
-  private _messages: Message[];
+  private messages: Message[];
 
   constructor(name: string) {
     this.name = name;
     this.id = Math.floor(Math.random() * 1000);
     this.users = [];
-    this._messages = [];
+    this.messages = [];
   }
 
-  get messages() : Message[]{
-    return this._messages;
+  public getMessages(): Message[] {
+    return this.messages;
+  }
+
+  public addMessage(message: Message) {
+    this.messages.push(message);
   }
 }

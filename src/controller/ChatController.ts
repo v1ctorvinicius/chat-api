@@ -1,9 +1,21 @@
 import { Request, Response } from "express";
 import { chatService } from "../service/ChatService";
+import { chatUseCases } from "../uc/chat/chatUseCases";
+import Chat from "../model/Chat";
 
-class ChatRoomController {
+class ChatController {
+  public getMessages(req: Request, res: Response) {
+    let chatId = parseInt(req.params.chatId);
+    return res.json(chatService.getChatMessagesById(chatId)).status(200);
+  }
+
   public getChats(req: Request, res: Response) {
     return res.json(chatService.getChats()).status(200);
+  }
+
+  public getChatById(req: Request, res: Response) {
+    let chatId = parseInt(req.params.chatId);
+    return res.json(chatService.getChatById(chatId)).status(200);
   }
 
   public create(req: Request, res: Response) {
@@ -23,11 +35,11 @@ class ChatRoomController {
 
   public post(req: Request, res: Response) {
     let chatId = parseInt(req.params.chatId);
-    let userId = parseInt(req.params.userId);
-    return res
-      .json(chatService.newMessage(chatId, userId, req.body.message))
-      .status(200);
+    let messageDTO = req.body;
+    return res.json(chatService.addMessage(chatId, messageDTO)).status(200);
   }
 }
 
-export const chatRoomController = new ChatRoomController();
+
+
+export const chatController = new ChatController();

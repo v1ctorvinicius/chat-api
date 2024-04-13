@@ -1,20 +1,18 @@
-import ChatRoom from "../model/ChatRoom";
+import { MessageDTO } from "../controller/dto/message";
+import Chat from "../model/Chat";
 import Message from "../model/Message";
 import User from "../model/User";
 import { userService } from "./UserService";
 
 class ChatService {
-  private _chats: ChatRoom[] = [];
+  private _chats: Chat[] = [];
 
-  public getChatById(id: number): ChatRoom | undefined {
-    let chat = this._chats.find((chat) => {
+  public getChatById(id: number): Chat | undefined {
+    return this._chats.find((chat) => {
       if (id === chat.id) {
-        console.log("Equal: chat.id, chatId");
         return chat; // Return the chat room when found
       }
-      return; // Continue searching
     });
-    return chat;
   }
 
   public getChats() {
@@ -23,7 +21,7 @@ class ChatService {
 
   public createChat(name: string) {
     if (name === "" || name === undefined) name = "Chat " + this.chatCount();
-    let newChat = new ChatRoom(name);
+    let newChat = new Chat(name);
     this._chats.push(newChat);
     return newChat;
   }
@@ -50,28 +48,29 @@ class ChatService {
     chat.users.push(user);
   }
 
-  public newMessage(chatId: number, userId: number, message: string) {
-    let chat = this.getChatById(chatId);
-    let user = userService.getUserById(userId);
+  public getChatMessagesById(chatId: number) {
+    console.log(this.getChatById(chatId)?.getMessages());
+    
+    return this.getChatById(chatId)?.getMessages();
+  }
 
+  public addMessage(chatId: number, messageDTO: MessageDTO) {
+    // console.log("message: ", messageDTO);
+    const message = new Message(
+      messageDTO.text,
+      messageDTO.user_id,
+      messageDTO.timestamp
+    );
+
+    let chat = this.getChatById(chatId);
     if (!chat) {
       console.log("Chat not found for chatId: ", chatId);
       return;
     }
+    chat.addMessage(message);
 
-    if (!user) {
-      console.log("User not found for userId in this chat: ", userId);
-      return;
-    }
-
-    // Chat room found, add the message
-    let newMessage = new Message(message, userId);
-    console.log("newMessage: ", newMessage);
-    
-    chat.messages.push(newMessage);
-    console.log("chat.messages: ", chat.messages);
-    
-    console.log("Final chat: ", chat);
+    console.log("chat.messages: ", chat.getMessages());
+    // console.log("Final chat: ", chat);
   }
 }
 
