@@ -7,7 +7,7 @@ export class App {
 
   constructor() {
     this.server = express();
-    this.server.use(cors());
+    
     this.middleware();
     this.router();
   }
