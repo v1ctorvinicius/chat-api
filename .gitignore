@@ -21,3 +21,4 @@ webpack-stats.json
 .settings.json
 .code-workspace
 
+.vercel
