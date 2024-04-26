@@ -4,7 +4,7 @@ function getChatMessages(chatId: number) {
   console.log("asdadadsadsasdad");
   
   const chat = chatService.getChatById(chatId);
-  return chat?.messages;
+  return chat?.getMessages();
 }
 
 export const chatUseCases = {
