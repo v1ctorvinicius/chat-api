@@ -1,6 +1,6 @@
 import express from "express";
 import { router } from "./route/router";
-const cors = require("cors");
+import cors from "cors";
 
 export class App {
   public server: express.Application;
