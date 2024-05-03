@@ -1,8 +1,8 @@
 import { MessageDTO } from "../controller/dto/message";
 import Chat from "../model/Chat";
 import Message from "../model/Message";
-import User from "../model/User";
 import { userService } from "./UserService";
+import { io } from "../index";
 
 class ChatService {
   private _chats: Chat[] = [];
@@ -23,6 +23,7 @@ class ChatService {
     if (name === "" || name === undefined) name = "Chat " + this.chatCount();
     let newChat = new Chat(name);
     this._chats.push(newChat);
+    io.emit("chatCreated", this._chats);
     return newChat;
   }
 
@@ -50,7 +51,7 @@ class ChatService {
 
   public getChatMessagesById(chatId: number) {
     console.log(this.getChatById(chatId)?.getMessages());
-    
+
     return this.getChatById(chatId)?.getMessages();
   }
 
