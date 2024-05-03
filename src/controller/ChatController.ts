@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import { chatService } from "../service/ChatService";
-import { chatUseCases } from "../uc/chat/chatUseCases";
-import Chat from "../model/Chat";
 
 class ChatController {
   public getMessages(req: Request, res: Response) {
