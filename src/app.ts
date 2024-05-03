@@ -1,10 +1,9 @@
 import express from "express";
-import { createServer } from "http";
 import { Server } from "socket.io";
 import { router } from "./route/router";
 import cors from "cors";
 
-const http = require("http");
+import http from "http";
 
 export class App {
   public app: express.Application;
