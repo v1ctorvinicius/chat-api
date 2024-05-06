@@ -25,6 +25,13 @@ export const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
+  socket.on("message", (data) => {
+    console.log(data);
+  });
+});
+
+io.on("disconnect", (socket) => {
+  console.log(`User disconnected: ${socket.id}`);
 });
 
 server.listen(port, () => {
