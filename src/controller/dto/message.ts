@@ -1,6 +1,7 @@
 export interface MessageDTO {
   id: number;
-  text: string;
+  content: string;
   user_id: number;
   timestamp: string;
+  sender: string;
 }
