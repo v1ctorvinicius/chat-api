@@ -13,7 +13,7 @@ router.get("/chats/count", chatController.count);
 router.get("/chats/:chatId/get-messages", chatController.getMessages);
 router.post("/chats", chatController.create);
 router.post("/chats/connect", chatController.connect); //TODO: put chatId in param, erase from body
-router.post("/chats/send-message/:chatId", chatController.post);
+// router.post("/chats/send-message/:chatId", chatController.post);
 
 router.get("/users", userController.getUsers);
 router.post("/users", userController.createUser);

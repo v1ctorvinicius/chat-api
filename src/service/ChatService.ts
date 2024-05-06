@@ -55,24 +55,24 @@ class ChatService {
     return this.getChatById(chatId)?.getMessages();
   }
 
-  public addMessage(chatId: number, messageDTO: MessageDTO) {
-    // console.log("message: ", messageDTO);
-    const message = new Message(
-      messageDTO.text,
-      messageDTO.user_id,
-      messageDTO.timestamp
-    );
+//   public addMessage(chatId: number, messageDTO: MessageDTO) {
+//     // console.log("message: ", messageDTO);
+//     const message = new Message(
+//       messageDTO.text,
+//       messageDTO.user_id,
+//       messageDTO.timestamp
+//     );
 
-    let chat = this.getChatById(chatId);
-    if (!chat) {
-      console.log("Chat not found for chatId: ", chatId);
-      return;
-    }
-    chat.addMessage(message);
+//     let chat = this.getChatById(chatId);
+//     if (!chat) {
+//       console.log("Chat not found for chatId: ", chatId);
+//       return;
+//     }
+//     chat.addMessage(message);
 
-    console.log("chat.messages: ", chat.getMessages());
-    // console.log("Final chat: ", chat);
-  }
+//     console.log("chat.messages: ", chat.getMessages());
+//     // console.log("Final chat: ", chat);
+//   }
 }
 
 export const chatService = new ChatService();

@@ -31,11 +31,11 @@ class ChatController {
     return res.json(chatService.connect(chatId, userId)).status(200);
   }
 
-  public post(req: Request, res: Response) {
-    let chatId = parseInt(req.params.chatId);
-    let messageDTO = req.body;
-    return res.json(chatService.addMessage(chatId, messageDTO)).status(200);
-  }
+  // public post(req: Request, res: Response) {
+  //   let chatId = parseInt(req.params.chatId);
+  //   let messageDTO = req.body;
+  //   return res.json(chatService.addMessage(chatId, messageDTO)).status(200);
+  // }
 }
 
 
