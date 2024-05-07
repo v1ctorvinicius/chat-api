@@ -1,6 +1,8 @@
 export interface MessageDTO {
   id: number;
-  text: string;
-  user_id: number;
+  chatId: number;
+  content: string;
+  userId: number;
   timestamp: string;
+  sender: string;
 }

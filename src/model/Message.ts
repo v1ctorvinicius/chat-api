@@ -1,32 +1,21 @@
+import User from "./User";
+
 export default class Message {
 
-  private _id: number;
-  private _userId : number;
-  private _text: string;
-  private _timestamp: string;
+  public id: number;
+  public userId : number;
+  public content: string;
+  public timestamp: string;
+  public sender: User;
 
-  constructor(text: string, userId: number, timestamp: string) {
-    this._id = Math.floor(Math.random() * 1000);
-    this._text = text;
-    this._userId = userId;
+  constructor(text: string, userId: number, timestamp: string, sender: User) {
+    this.id = Math.floor(Math.random() * 1000);
+    this.content = text;
+    this.userId = userId;
     // this._timestamp = new Date().toLocaleString('pt-br');
-    this._timestamp = timestamp;
+    this.timestamp = timestamp;
+    this.sender = sender;
   }
 
-  get text(): string {
-    return this._text;
-  }
-
-  get timestamp(): string {
-    return this._timestamp.toLocaleString();
-  }
-
-  get id(): number {
-    return this._id;
-  }
-
-  get userId(): number {
-    return this._userId;
-  }
 
 }
