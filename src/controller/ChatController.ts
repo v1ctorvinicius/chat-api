@@ -3,7 +3,7 @@ import { chatService } from "../service/ChatService";
 
 class ChatController {
   public getMessages(req: Request, res: Response) {
-    let chatId = parseInt(req.params.chatId);
+    let chatId = req.params.chatId;
     return res.json(chatService.getChatMessagesById(chatId)).status(200);
   }
 
@@ -12,7 +12,7 @@ class ChatController {
   }
 
   public getChatById(req: Request, res: Response) {
-    let chatId = parseInt(req.params.chatId);
+    let chatId = req.params.chatId;
     return res.json(chatService.getChatById(chatId)).status(200);
   }
 
@@ -26,18 +26,10 @@ class ChatController {
   }
 
   public connect(req: Request, res: Response) {
-    let chatId = parseInt(req.body.chatId);
+    let chatId = req.body.chatId;
     let userId = req.body.userId;
     return res.json(chatService.connect(chatId, userId)).status(200);
   }
-
-  // public post(req: Request, res: Response) {
-  //   let chatId = parseInt(req.params.chatId);
-  //   let messageDTO = req.body;
-  //   return res.json(chatService.addMessage(chatId, messageDTO)).status(200);
-  // }
 }
-
-
 
 export const chatController = new ChatController();

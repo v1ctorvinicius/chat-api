@@ -28,9 +28,10 @@ export const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
   socket.on("message", (data) => {
+    
     chatService.getChatById(data.chatId)?.addMessage(data);
     io.emit("chatupdated", chatService.getChatById(data.chatId));
-    console.log("message: ", data);
+    // console.log("message: ", data);
   });
 });
 

@@ -7,7 +7,7 @@ import { io } from "../index";
 class ChatService {
   private _chats: Chat[] = [];
 
-  public getChatById(id: number): Chat | undefined {
+  public getChatById(id: string): Chat | undefined {
     return this._chats.find((chat) => {
       if (id === chat.id) {
         return chat; // Return the chat room when found
@@ -31,17 +31,17 @@ class ChatService {
     return this._chats.length;
   }
 
-  public connect(chatId: number, userId: string) {
+  public connect(chatId: string, userId: string) {
     let chat = this.getChatById(chatId);
     let user = userService.getUserById(userId);
 
     if (!chat) {
-      console.log("ChatRoom not found for chatId: ", chatId);
+      console.error("ChatRoom not found for chatId: ", chatId);
       return;
     }
 
     if (!user) {
-      console.log("User not found for userId in this chat: ", userId);
+      console.error("User not found for userId in this chat: ", userId);
       return;
     }
 
@@ -49,7 +49,7 @@ class ChatService {
     chat.users.push(user);
   }
 
-  public getChatMessagesById(chatId: number) {
+  public getChatMessagesById(chatId: string) {
     console.log(this.getChatById(chatId)?.getMessages());
 
     return this.getChatById(chatId)?.getMessages();

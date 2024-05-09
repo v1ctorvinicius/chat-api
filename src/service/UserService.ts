@@ -18,8 +18,6 @@ export default class UserService {
 
   public createUser(name: string) {
     let newUser = new User(name);
-    console.log("newUser: ", newUser);
-
     this._users.push(newUser);
   }
 
