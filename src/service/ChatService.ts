@@ -31,7 +31,7 @@ class ChatService {
     return this._chats.length;
   }
 
-  public connect(chatId: number, userId: number) {
+  public connect(chatId: number, userId: string) {
     let chat = this.getChatById(chatId);
     let user = userService.getUserById(userId);
 

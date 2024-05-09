@@ -23,7 +23,7 @@ export default class UserService {
     this._users.push(newUser);
   }
 
-  public getUserById(id: number) {
+  public getUserById(id: string) {
     return this._users.find((user) => user.id === id);
   }
 

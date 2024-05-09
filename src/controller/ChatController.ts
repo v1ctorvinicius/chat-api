@@ -27,7 +27,7 @@ class ChatController {
 
   public connect(req: Request, res: Response) {
     let chatId = parseInt(req.body.chatId);
-    let userId = parseInt(req.body.userId);
+    let userId = req.body.userId;
     return res.json(chatService.connect(chatId, userId)).status(200);
   }
 
