@@ -4,7 +4,6 @@ import DiceService from "../service/dice/DiceService";
 class DiceController {
   public async rollDices(req: Request, res: Response) {
     const { expression } = req.params;
-    console.log("expression: ", expression);
 
     res.json(DiceService.rollDices(expression));
   }

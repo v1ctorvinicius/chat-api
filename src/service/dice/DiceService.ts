@@ -18,7 +18,6 @@ class DiceService {
     const dice1 = Dice6.roll();
     const dice2 = Dice6.roll();
     result = { dices: [dice1, dice2], total: dice1 + dice2 };
-		console.log("result: ", result);
 		
     return result;
   }

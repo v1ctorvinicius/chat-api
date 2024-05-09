@@ -18,12 +18,10 @@ export default class UserService {
 
   public createUser(name: string) {
     let newUser = new User(name);
-    console.log("newUser: ", newUser);
-
     this._users.push(newUser);
   }
 
-  public getUserById(id: number) {
+  public getUserById(id: string) {
     return this._users.find((user) => user.id === id);
   }
 

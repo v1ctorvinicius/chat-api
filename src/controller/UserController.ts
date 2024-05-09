@@ -22,7 +22,7 @@ class UserController {
     return res.json(userService.getUsers()).status(200);
   }
 
-  public getUserById(id: number) {
+  public getUserById(id: string) {
     return userService.getUserById(id);
   }
 }

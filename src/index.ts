@@ -5,6 +5,8 @@ import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import dotenv from "dotenv";
+import { chatService } from "./service/ChatService";
+import Message from "./model/Message";
 
 dotenv.config();
 const port = process.env.PORT;
@@ -26,7 +28,10 @@ export const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
   socket.on("message", (data) => {
-    console.log(data);
+    
+    chatService.getChatById(data.chatId)?.addMessage(data);
+    io.emit("chatupdated", chatService.getChatById(data.chatId));
+    // console.log("message: ", data);
   });
 });
 
