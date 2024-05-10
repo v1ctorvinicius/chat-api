@@ -1,5 +1,5 @@
-import User from "./User";
-import Message from "./Message";
+import User from "./user";
+import Message from "./message";
 
 export default class ChatRoom {
   public id: string;

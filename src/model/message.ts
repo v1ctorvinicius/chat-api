@@ -1,15 +1,20 @@
-import User from "./User";
+import User from "./user";
 
 export default class Message {
-
   public id: string;
   public chatId: string;
-  public userId : number;
-  public username: string
+  public userId: number;
+  public username: string;
   public content: string;
   public timestamp: string;
 
-  constructor(content: string, chatId: string, userId: number,  username: string, timestamp: string) {
+  constructor(
+    content: string,
+    chatId: string,
+    userId: number,
+    username: string,
+    timestamp: string
+  ) {
     this.id = Math.floor(Math.random() * 1000).toString();
     this.chatId = chatId;
     this.content = content;
@@ -18,6 +23,4 @@ export default class Message {
     // this._timestamp = new Date().toLocaleString('pt-br');
     this.timestamp = timestamp;
   }
-
-
 }
