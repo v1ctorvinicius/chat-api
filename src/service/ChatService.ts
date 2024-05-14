@@ -50,7 +50,7 @@ class ChatService {
   }
 
   public getChatMessagesById(chatId: string) {
-    console.log(this.getChatById(chatId)?.getMessages());
+    // console.log(this.getChatById(chatId)?.getMessages());
 
     return this.getChatById(chatId)?.getMessages();
   }
