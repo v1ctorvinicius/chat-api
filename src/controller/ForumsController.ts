@@ -2,34 +2,34 @@ import { Request, Response } from "express";
 import db from "../db/connection";
 
 const getForums = async (req: Request, res: Response) => {
-  const busca = req.params;
-  console.log("busca", busca);
+  // const busca = req.params;
+  // console.log("busca", busca);
 
   const response = await db.get("forums");
-  console.log("response", response);
-  
-
+  // console.log("response", response);
   if (!response) {
     return res.sendStatus(404);
   }
-  return res.json(JSON.parse('response')).status(200);
+  return res.json(JSON.parse("response")).status(200);
 };
 
 const createForum = async (req: Request, res: Response) => {
   if (!req.body.userId || !req.body.forumName) return res.sendStatus(400);
 
-  const forumId = 2;
-
+  const forumId = Date.now().toString();
   const response = await db.sadd(
-    `${forumId}`,
-    JSON.stringify([{ userId: 'req.body.userId', name: req.body.forumName }, { userId: req.body.userId, name: req.body.forumName }])
+    `forum:${forumId}`,
+    JSON.stringify([
+      { userId: "req.body.userId", name: req.body.forumName },
+      { userId: req.body.userId, name: req.body.forumName },
+    ])
   );
 
   // if (response !== "OK") {
   //   return res.sendStatus(500);
   // }
 
-  return res.sendStatus(201);
+  return res.json(response).sendStatus(201);
 };
 
 const getForumById = async (req: Request, res: Response) => {
