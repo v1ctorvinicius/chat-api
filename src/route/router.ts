@@ -3,7 +3,7 @@ import { healthController } from "../controller/HealthController";
 import { chatController } from "../controller/ChatController";
 import { diceController } from "../controller/DiceController";
 import { userController } from "../controller/UserController";
-import forumsController from "../controller/ForumsController";
+import forumsController from "../controller/ForumController";
 
 const router: Router = Router();
 router.use("/api", router);
