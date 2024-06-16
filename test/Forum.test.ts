@@ -25,7 +25,7 @@ afterAll(async () => {
 
 test("must create a new forum", async () => {
   const input = {
-    name: "FODASE PORRA",
+    name: "MERDA",
     description: "forum description",
   };
 
