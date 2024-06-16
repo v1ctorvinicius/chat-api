@@ -25,13 +25,14 @@ afterAll(async () => {
 
 test("must create a new forum", async () => {
   const input = {
-    name: "this is a test forum",
+    name: "FODASE PORRA",
     description: "forum description",
   };
 
   const createdForumId = await createForumUseCase.execute(input);
   const forum = await getForumByIdUseCase.execute(createdForumId);
-  expect(forum).toBeDefined();
+
+  expect(forum?.name).toBe(input.name);
 });
 
 test("must create a forum with optional parameters", () => {

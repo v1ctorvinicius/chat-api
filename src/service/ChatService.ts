@@ -10,7 +10,7 @@ class ChatService {
   public getChatById(id: string): Chat | undefined {
     return this._chats.find((chat) => {
       if (id === chat.id) {
-        return chat; // Return the chat room when found
+        return chat;
       }
     });
   }
@@ -45,34 +45,12 @@ class ChatService {
       return;
     }
 
-    // Chat room found, add the user
     chat.users.push(user);
   }
 
   public getChatMessagesById(chatId: string) {
-    // console.log(this.getChatById(chatId)?.getMessages());
-
     return this.getChatById(chatId)?.getMessages();
   }
-
-  //   public addMessage(chatId: number, messageDTO: MessageDTO) {
-  //     // console.log("message: ", messageDTO);
-  //     const message = new Message(
-  //       messageDTO.text,
-  //       messageDTO.user_id,
-  //       messageDTO.timestamp
-  //     );
-
-  //     let chat = this.getChatById(chatId);
-  //     if (!chat) {
-  //       console.log("Chat not found for chatId: ", chatId);
-  //       return;
-  //     }
-  //     chat.addMessage(message);
-
-  //     console.log("chat.messages: ", chat.getMessages());
-  //     // console.log("Final chat: ", chat);
-  //   }
 }
 
 export const chatService = new ChatService();

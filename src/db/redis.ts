@@ -11,11 +11,21 @@ class ForumRepositoryRedisImpl implements ForumRepository, ResourceManagement {
   }
 
   async getForumById(forumId: string): Promise<Forum | null> {
-    const forum = await this.client.hgetall(`forum:${forumId}`)
-    if (forum) {
-      return Forum.create(forum.name, forum.description); // Substitua com os campos corretos do objeto Forum
-    }
-    return null;
+    let forum;
+    // console.log("[usecase] forumId no usecase: ", `forum:${forumId}`);
+    forum = await this.client.hget(`forum:${forumId}`, "name");
+    console.log("[usecase] forum no usecase: ", forum);
+
+    return Forum.create(
+      "",
+      "",
+      "",
+      ""
+      // forum.id,
+      // forum.name,
+      // forum.creatorId,
+      // forum.description
+    );
   }
 
   async getForums(): Promise<Forum[]> {
@@ -24,7 +34,12 @@ class ForumRepositoryRedisImpl implements ForumRepository, ResourceManagement {
 
   async saveForum(forum: Forum) {
     await this.client.sadd("forums", forum.id);
-    await this.client.hset(`forum:${forum.id}`, forum);
+    await this.client.hset(`forum:${forum.id}`, {
+      id: forum.id,
+      name: forum.name,
+      creatorId: forum.creatorId,
+      description: forum.description,
+    });
   }
 
   async disconnect(): Promise<void> {

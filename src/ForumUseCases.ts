@@ -14,11 +14,11 @@ export class CreateForumUseCase {
 
   public async execute(input: any): Promise<string> {
     if (!input.name) throw new Error("name is required");
-    const id = createUUID();
+    const uuid = createUUID();
     this.forumRepository.saveForum(
-      Forum.create(id, input.name, input.description)
+      Forum.create(`${uuid}`, input.name, input.creatorId, input.description)
     );
-    return id;
+    return uuid;
   }
 }
 

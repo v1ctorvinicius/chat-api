@@ -26,18 +26,16 @@ export const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
   socket.on("message", (data) => {
     chatService.getChatById(data.chatId)?.addMessage(data);
     io.emit("chatupdated", chatService.getChatById(data.chatId));
-    // console.log("message: ", data);
   });
 });
 
 io.on("disconnect", (socket) => {
-  console.log(`User disconnected: ${socket.id}`);
+  console.info(`User disconnected: ${socket.id}`);
 });
 
 server.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.info(`Server running on port ${port}`);
 });
