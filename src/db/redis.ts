@@ -10,21 +10,14 @@ class ForumRepositoryRedisImpl implements ForumRepository, ResourceManagement {
     this.client = client;
   }
 
-  async getForumById(forumId: string): Promise<Forum | null> {
-    let forum;
-    // console.log("[usecase] forumId no usecase: ", `forum:${forumId}`);
-    forum = await this.client.hgetall(`forum:${forumId}`);
-    console.log("[usecase] forum no usecase: ", forum);
-
+  async getForumById(uuid: string): Promise<Forum | null> {
+    await this.client.smembers("forums");
+    const forum = await this.client.hgetall(`forum:${uuid}`);
     return Forum.create(
-      "",
-      "",
-      "",
-      ""
-      // forum.id,
-      // forum.name,
-      // forum.creatorId,
-      // forum.description
+      forum.id,
+      forum.name,
+      forum.creatorId,
+      forum.description
     );
   }
 

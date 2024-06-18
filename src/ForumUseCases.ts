@@ -27,7 +27,7 @@ export class GetForumByIdUseCase {
     this.forumRepository = forumRepository;
   }
 
-  public async execute(forumId: string): Promise<Forum | null> {
-    return await this.forumRepository.getForumById(forumId);
+  public async execute(id: string): Promise<Forum | null> {
+    return await this.forumRepository.getForumById(id);
   }
 }

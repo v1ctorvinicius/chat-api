@@ -23,7 +23,7 @@ class ChatService {
     if (name === "" || name === undefined) name = "Chat " + this.chatCount();
     let newChat = new Chat(name);
     this._chats.push(newChat);
-    io.emit("chatCreated", this._chats);
+    io.emit("chatCreated", newChat);
     return newChat;
   }
 
