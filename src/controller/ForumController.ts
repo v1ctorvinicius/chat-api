@@ -12,7 +12,8 @@ const getForumByIdUseCase = new GetForumByIdUseCase(forumRepository);
 const createForumUseCase = new CreateForumUseCase(forumRepository);
 
 const getForums = async (req: Request, res: Response) => {
-  return res.json(JSON.parse("ok")).status(200);
+  const forums = await forumRepository.getForums();
+  return res.status(200).send(forums);
 };
 
 const createForum = async (req: Request, res: Response) => {
@@ -32,7 +33,7 @@ const createForum = async (req: Request, res: Response) => {
   };
 
   const response = await createForumUseCase.execute(newForum);
-  return res.send(response).status(201);
+  return res.status(201).send(response);
 };
 
 const getForumById = async (req: Request, res: Response) => {
@@ -41,10 +42,8 @@ const getForumById = async (req: Request, res: Response) => {
     return res.status(400).send("[error] Invalid forum id");
 
   const response = await getForumByIdUseCase.execute(id);
-  console.log("response: ", response);
-
   if (!response) return res.sendStatus(404);
-  return res.send(response).status(200);
+  return res.status(200).send(response);
 };
 
 export default { getForums, createForum, getForumById };

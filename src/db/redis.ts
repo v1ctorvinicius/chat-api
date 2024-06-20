@@ -28,7 +28,19 @@ class ForumRepositoryRedisImpl implements ForumRepository, ResourceManagement {
   }
 
   async getForums(): Promise<Forum[]> {
-    throw new Error("Method not implemented.");
+    const forumsIds = await this.client.smembers("forums");
+    const forums = await Promise.all(
+      forumsIds.map(async (forumId) => {
+        const forum = await this.client.hgetall(`forum:${forumId}`);
+        return Forum.create(
+          forum.id,
+          forum.name,
+          forum.creatorId,
+          forum.description
+        );
+      })
+    );
+    return forums;
   }
 
   async saveForum(forum: Forum) {
