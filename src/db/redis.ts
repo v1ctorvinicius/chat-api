@@ -3,6 +3,13 @@ import { Forum } from "../model/forum";
 import { ForumRepository } from "../ForumRepository";
 import { ResourceManagement } from "../ResourceManagement";
 
+import dotenv from "dotenv";
+dotenv.config();
+
+export function createRedisClient(): Redis {
+  return new Redis(process.env.UPSTASH_URL!);
+}
+
 class ForumRepositoryRedisImpl implements ForumRepository, ResourceManagement {
   private client: Redis;
 
@@ -11,7 +18,6 @@ class ForumRepositoryRedisImpl implements ForumRepository, ResourceManagement {
   }
 
   async getForumById(uuid: string): Promise<Forum | null> {
-    await this.client.smembers("forums");
     const forum = await this.client.hgetall(`forum:${uuid}`);
     return Forum.create(
       forum.id,
